@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 
@@ -27,7 +28,7 @@ app.get("/health", (req, res) => {
     });
 });
 
-app.post("/api/students", (req, res) => {
+app.post("/api/students", (req, res, next) => {
     try {
         const { name, email, age, course } = req.body;
 
@@ -109,7 +110,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Health check: http://localhost:${PORT}/health`);
 });
